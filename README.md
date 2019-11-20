@@ -5,7 +5,7 @@ Raspberry Pi customizable firstboot script
 
 1piboot leverages the Raspbian Buster rpi-firstboot service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
 
-Raspbian runs rpi-firstboot during the first boot of the system. Under normal circumstances, the service will not run after the first boot, since the script is renamed.
+Raspbian runs the rpi-firstboot service during the first boot of the system. Under normal circumstances, the service will not run after the first boot, since the script is renamed.
 
 At the current time, it's easiest to install 1piboot (or to leverage rpi-firstboot via your own mechanism) if you either build your new SD card on a Linux system, or do a small amount of SD card post-configuration on a Linux system before booting the SD card. Still need to figure out a reasonable way to do the installation and configuration onto the SD card on Windows.
 
