@@ -25,10 +25,12 @@ After you have copied the Raspbian distro to your SD card, perform the following
 
 * If there are other scripts that you want to run at first boot, name them in the format `0nn-something.sh` (e.g., 010-domything.sh) and sudo copy them to the /mnt/1piboot directory. Make sure that they are executable (`sudo chmod 755 /mnt/1piboot/0*.sh`). These scripts will run during firstboot as root, so there is no need to use sudo anywhere in them.
 
-There are a couple of examples in this github:
+    There are a couple of custom script examples in this github:
 
     * `010-disable-triggerhappy.sh` - Disables the TriggerHappy service, and can be used if you are not using system-wide hotkeys provided by the TriggerHappy service.
+
     * `020-ssh-switch.sh` - Disables the sshd service and enables a systemd-controlled ssh service that works identically to the sshd service, but is controlled by more lightweight.
+
     * `030-disable-rsyslog.sh` - Disables the rsyslog service and enables a permanent journal. Use this if you don't need the text logs in /var/log. All system logs are visible with the `journalctl` command.
 
 * `sudo umount /mnt` - Dismounts the SD card boot partition
