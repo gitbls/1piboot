@@ -11,13 +11,15 @@ At the current time, it's easiest to install 1piboot (or to leverage rpi-firstbo
 
 ## Installation and Use
 
-Copy the files from this github to your local Linux system: rpi-firstboot.sh, 1piboot.conf, and the 0*-*.sh scripts (if desired).
+Copy the files from this github to your local Linux system: rpi-firstboot.sh, 1piboot.conf, and the 0*-*.sh scripts (if desired). 
 
-After you have copied the Raspbian distro to your SD card, perform the following steps on a Linux system:
+After you have copied the Raspbian distro to your SD card, perform the following steps on a Linux system. The script `Install1piboot` can be used, if desired.
 
 * `sudo mount /dev/sdX1 /mnt` - Mounts the SD card on your Linux system. Change **X** as appropriate on your Linux system
 
 * `sudo cp rpi-firstboot.sh /mnt` - Copies the rpi-firstboot.sh script to /boot on the SD card
+
+* `sudo chmod 755 /mnt/rpi-firstboot.sh` - Ensure correct file protection
 
 * `sudo mkdir /mnt/1piboot` - Makes the configuration directory /boot/1piboot for 1piboot on the SD card
 
@@ -32,6 +34,8 @@ After you have copied the Raspbian distro to your SD card, perform the following
     * `020-ssh-switch.sh` - Disables the sshd service and enables a systemd-controlled ssh service that works identically to the sshd service, but is controlled by more lightweight.
 
     * `030-disable-rsyslog.sh` - Disables the rsyslog service and enables a permanent journal. Use this if you don't need the text logs in /var/log. All system logs are visible with the `journalctl` command.
+
+* `sudo chmod 755 /mnt/1piboot/0*-*.sh` - Ensure correct file protections
 
 * `sudo umount /mnt` - Dismounts the SD card boot partition
 

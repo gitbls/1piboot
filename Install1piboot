@@ -1,0 +1,49 @@
+#!/bin/bash
+# Copy 1piboot firstboot.sh files to new SD card
+# $1=device name
+# $2=source dir
+# $3=hostname for new system
+# $4=empty directory for mounting SD card (default=/mnt)
+
+function usage() {
+    echo "Usage: sudo $0 sdev sdir hname [mnt]"
+    echo "Copies and configures Raspbian firstboot.sh on a target SD card"
+    echo ""
+    echo "  sdev  SD Card device name (/dev/sdX)"
+    echo "  sdir  Source directory for firstboot.sh and 1piboot.conf"
+    echo "  hname Hostname for new system"
+    echo "  mnt   Empty directory for mounting SD card (default=/mnt)"
+    exit
+}
+
+dev="$1"
+sdir="$2"
+hname="$3"
+mnt="$4"
+[ "$mnt" == "" ] && mnt="/mnt"
+
+[ $(id -u) -ne 0 ] && echo "? $0 must be run as root; use sudo" && usage
+[ "$dev" == "" -o "$sdir" == "" -o "$hname" = "" ] && usage
+
+[ -b $mnt ] && echo "? $0 $mnt is not an empty directory" && exit
+
+# Mount /boot partition and copy rpi-firstboot.sh to it
+mount ${dev}1 $mnt
+cp $sdir/rpi-firstboot.sh $mnt
+chmod 755 $mnt/rpi-firstboot.sh
+
+# Create /boot/1piboot and populate with config file and scripts
+[ ! -d $mnt/1piboot ] && mkdir $mnt/1piboot
+cp $sdir/1piboot.conf $mnt/1piboot
+sed -i "s/xxxxx/$hname/" $mnt/1piboot/1piboot.conf
+cp $sdir/0*-*.sh $mnt/1piboot
+chmod 755 $mnt/1piboot/0*-*.sh
+umount $mnt
+
+# Mount the 2nd partition and enable the rpi-firstboot service
+mount ${dev}2 $mnt
+if [ ! -L $mnt/etc/systemd/system/multi-user.target.wants/rpi-firstboot.service ]
+then
+    ln -s /etc/systemd/system/rpi-firstboot.service $mnt/etc/systemd/system/multi-user.target.wants/rpi-firstboot.service
+fi
+umount $mnt
