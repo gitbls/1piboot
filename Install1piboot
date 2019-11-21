@@ -36,8 +36,8 @@ chmod 755 $mnt/rpi-firstboot.sh
 [ ! -d $mnt/1piboot ] && mkdir $mnt/1piboot
 cp $sdir/1piboot.conf $mnt/1piboot
 sed -i "s/xxxxx/$hname/" $mnt/1piboot/1piboot.conf
-cp $sdir/0*-*.sh $mnt/1piboot
-chmod 755 $mnt/1piboot/0*-*.sh
+[ "$(ls $sdir/0*-*.sh 2>/dev/null)" != "" ] && cp $sdir/0*-*.sh $mnt/1piboot
+[ "$(ls $mnt/1piboot/0*-*.sh 2>/dev/null)" != "" ] && chmod 755 $mnt/1piboot/0*-*.sh
 umount $mnt
 
 # Mount the 2nd partition and enable the rpi-firstboot service

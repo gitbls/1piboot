@@ -3,11 +3,11 @@ Raspberry Pi customizable firstboot script
 
 ## Overview
 
-1piboot leverages the Raspbian Buster rpi-firstboot service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
+1piboot leverages the Raspbian Buster *rpi-firstboot* service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
 
-Raspbian runs the rpi-firstboot service during the first boot of the system. Under normal circumstances, the service will not run after the first boot, since the script is renamed.
+Raspbian runs the rpi-firstboot service during the first boot of the system. Under normal circumstances, the service will only run during the first boot.
 
-Currently it's easiest to install 1piboot (or to leverage rpi-firstboot via your own mechanism) if you either build your new SD card on a Linux system, or do a small amount of SD card post-configuration on a Linux system before booting the SD card. Still need to sort out a reasonable, no-prerequisites required method on Windows to do the SD Card installation/configuration.
+Currently you need to install 1piboot (or to leverage rpi-firstboot via your own mechanism) if you either build your new SD card on a Linux system, or do the small amount of 1piboot preparation on a Linux system before booting the SD card. Still need to sort out a reasonable, no-prerequisites required method on Windows to do the SD Card installation and     configuration.
 
 ## Installation and Use
 
@@ -28,7 +28,7 @@ You'll need to copy the 1piboot files from GitHub.
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/Install1piboot -o Install1piboot`
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/rpi-firstboot.sh -o rpi-firstboot.sh`
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/1piboot.conf -o 1piboot.conf`
-        * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/010-disable-triggerhappy.sh -o 010-disable-triggerhapy.sh`
+        * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/010-disable-triggerhappy.sh -o 010-disable-triggerhappy.sh`
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/020-ssh-switch.sh -o 020-ssh-switch.sh`
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/030-disable-rsyslog.sh -o 030-disable-rsyslog.sh`
         * `chmod 755 Install1piboot rpi-firstboot.sh 0*.sh`
