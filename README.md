@@ -3,7 +3,7 @@ Raspberry Pi customizable firstboot script
 
 ## Overview
 
-1piboot leverages the Raspbian Buster *rpi-firstboot* service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
+1piboot uses a one-time service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
 
 1piboot easily configures the new host hostname, locale, keymap, timezone, and wifi-country. Custom scripts enable more complex modifications (see examples).
 
@@ -54,33 +54,9 @@ There are a couple of custom script examples in this github. You can use all or 
 
 * `/path/to/Install1piboot /dev/sdX /path/to/mydir newhostname` - Copies the files to the Raspbian SD Card in /dev/sdX (replace **X** with the appropriate device letter). The new host will be named 'newhostname'
 
-### Manual SD Card Configuration
-
-After you have copied the Raspbian distro to your SD card, perform the following steps on a Linux system. 
-
-* `sudo mount /dev/sdX1 /mnt` - Mounts the SD card on your Linux system. Change **X** as appropriate on your Linux system
-
-* `sudo cp rpi-firstboot.sh /mnt` - Copies the rpi-firstboot.sh script to /boot on the SD card
-
-* `sudo chmod 755 /mnt/rpi-firstboot.sh` - Ensure correct file protection
-
-* `sudo mkdir /mnt/1piboot` - Makes the configuration directory /boot/1piboot for 1piboot on the SD card
-
-* `sudo cp 1piboot.conf /mnt/1piboot` - Copies the 1piboot configuration script to the SD card. *Be sure to edit the sample 1piboot.conf and change the settings as desired.*
-
-* `sudo chmod 755 /mnt/1piboot/0*-*.sh` - Ensure correct file protections
-
-* `sudo umount /mnt` - Dismounts the SD card boot partition
-
-* `sudo mount /dev/sdX2 /mnt` - Mounts the 2nd SD card partition. Change **X** as appropriate on your Linux system.
-
-* `sudo ln -s /etc/systemd/system/rpi-firstboot.service /mnt/etc/systemd/system/multi-user.target.wants/rpi-firstboot.service` - Enables the rpi-firstboot service to start on the first boot of the newly built SD card
-
-* `sudo umount /mnt` - Dismounts the SD card, and it's ready to boot
-
 ## What Happens When the System Boots the First Time?
 
-When the system boots the first time, Raspbian starts the rpi-firstboot service, since it was enabled via the configuration above. rpi-firstboot.sh performs the system configuration specified in /boot/1piboot/1piboot.conf. If 1piboot.conf has the directive `custom-scripts=True`, rpi-firstboot.sh will also execute each script in /boot/1piboot named `0*-*.sh`.
+When the system boots the first time, Raspbian starts the rpi-firstboot service, since it was enabled by Install1piboot. rpi-firstboot.sh performs the system configuration specified in /boot/1piboot/1piboot.conf. If 1piboot.conf has the directive `custom-scripts=True`, rpi-firstboot.sh will also execute each script in /boot/1piboot named `0*-*.sh`.
 
 When rpi-firstboot.sh has completed, systemd will rename /boot/rpi-firstboot.sh to /boot/rpi-firstboot.sh.done so that the service does not execute again. This can be observed in the service file /etc/systemd/system/rpi-firstboot.service
 
