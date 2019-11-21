@@ -1,0 +1,9 @@
+#!/bin/bash
+
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/Install1piboot -o Install1piboot
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/rpi-firstboot.sh -o rpi-firstboot.sh
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/1piboot.conf -o 1piboot.conf
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/010-disable-triggerhappy.sh -o 010-disable-triggerhapy.sh
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/020-ssh-switch.sh -o 020-ssh-switch.sh
+curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/030-disable-rsyslog.sh -o 030-disable-rsyslog.sh
+
