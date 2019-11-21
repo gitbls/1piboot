@@ -35,9 +35,9 @@ You'll need to copy the 1piboot files from GitHub.
         * `curl -L https://raw.githubusercontent.com/gitbls/1piboot/master/030-disable-rsyslog.sh -o 030-disable-rsyslog.sh`
         * `chmod 755 Install1piboot rpi-firstboot.sh 0*.sh`
 
-* If there are other scripts that you want to run at first boot, name them in the format `0nn-something.sh` (e.g., 001-domything.sh) and place them in this same directory. These scripts will run during firstboot as root, so there is no need to use sudo anywhere in them. The 3 digits in the filename can be used for ordering the script execution (lower to higher).
+* If there are other custom scripts that you want to run at first boot, name them in the format `0nn-something.sh` (e.g., 001-domything.sh) and place them in this same directory. These scripts will run during firstboot as root, so there is no need to use sudo anywhere in them. The 3 digits in the filename can be used for ordering the script execution (lower to higher).
 
-* You can inhibit some of the 0*-*.sh scripts from being copied to the SD card by prepending a "." to the front of the name. For example, `mv 030-disable-rsyslog.sh .030-disable-rsyslog.sh`.
+* You can inhibit some of the 0*-*.sh custom scripts from being copied to the SD card by prepending a "." to the front of the name. For example, `mv 030-disable-rsyslog.sh .030-disable-rsyslog.sh`.
 
 There are a couple of custom script examples in this github. You can use all or none of them, as desired.
 
