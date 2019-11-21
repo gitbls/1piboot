@@ -5,6 +5,8 @@ Raspberry Pi customizable firstboot script
 
 1piboot leverages the Raspbian Buster *rpi-firstboot* service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
 
+1piboot easily configures the new host hostname, locale, keymap, timezone, and wifi-country. Custom scripts enable more complex modifications (see examples).
+
 Raspbian runs the rpi-firstboot service during the first boot of the system. Under normal circumstances, the service will only run during the first boot.
 
 Currently you need to install 1piboot (or to leverage rpi-firstboot via your own mechanism) if you either build your new SD card on a Linux system, or do the small amount of 1piboot preparation on a Linux system before booting the SD card. Still need to sort out a reasonable, no-prerequisites required method on Windows to do the SD Card installation and     configuration.
