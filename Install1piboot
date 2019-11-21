@@ -40,8 +40,25 @@ sed -i "s/xxxxx/$hname/" $mnt/1piboot/1piboot.conf
 [ "$(ls $mnt/1piboot/0*-*.sh 2>/dev/null)" != "" ] && chmod 755 $mnt/1piboot/0*-*.sh
 umount $mnt
 
-# Mount the 2nd partition and enable the rpi-firstboot service
+# Mount the 2nd partition and create and enable the rpi-firstboot service
 mount ${dev}2 $mnt
+cat > $mnt/etc/systemd/system/rpi-firstboot.service <<EOF
+[Unit]
+Description=FirstBoot
+After=network.target
+Before=rc-local.service
+ConditionFileNotEmpty=/boot/rpi-firstboot.sh
+
+[Service]
+ExecStart=/boot/rpi-firstboot.sh
+ExecStartPost=/bin/mv /boot/rpi-firstboot.sh /boot/rpi-firstboot.sh.done
+Type=oneshot
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 if [ ! -L $mnt/etc/systemd/system/multi-user.target.wants/rpi-firstboot.service ]
 then
     ln -s /etc/systemd/system/rpi-firstboot.service $mnt/etc/systemd/system/multi-user.target.wants/rpi-firstboot.service
