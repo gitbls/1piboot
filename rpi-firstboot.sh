@@ -37,6 +37,7 @@ do
 	    hostname)
 		logger "1piboot Setting hostname to $value..."
 		raspi-config do_hostname "$value" nonint
+		hostnamectl set-hostname $value
 		;;
 	    keymap)
 		logger "1piboot Setting keyboard to $value..."
