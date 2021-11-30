@@ -5,6 +5,8 @@ Raspberry Pi customizable firstboot script
 
 1piboot uses a one-time service to perform early system configuration to help get your Pi up and running quickly, and configured the way you want.
 
+**NOTE:** 1piboot has been superseded by [sdm](https://github.com/gitbls/sdm), which does everything that 1piboot does and much, much more. Check it out!
+
 1piboot easily configures the new host hostname, locale, keymap, timezone, and wifi-country. Custom scripts enable more complex modifications (see examples).
 
 Raspbian runs the rpi-firstboot service during the first boot of the system. Under normal circumstances, the service will only run during the first boot.
